@@ -11,7 +11,6 @@ module.exports = [
       ".eslintrc.js",
       "node_modules/**",
       "dist/**",
-      // ".github/workflows/",
     ],
   },
   js.configs.recommended,
