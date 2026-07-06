@@ -10,4 +10,11 @@ describe('Pokedex', () => {
       ),
     ).toBeVisible()
   })
+
+  test('page for specific pokemon can be opened', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' }) //does not work without waitUntil
+    await page.getByText('ivysaur').click({ force: true }) //weird but ok?
+
+    await expect(page.getByText('chlorophyll')).toBeVisible()
+  })
 })
