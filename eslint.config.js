@@ -75,13 +75,22 @@ module.exports = [
     },
   },
   {
-    files: ['jest.setup.js'],
+    files: ['jest.setup.js', 'e2e-tests/*', 'playwright.config.js'], //providing globals for extra stuff
     languageOptions: {
       ecmaVersion: 2018,
       sourceType: 'commonjs',
       globals: {
         ...globals.node,
         ...globals.jest,
+      },
+    },
+  },
+  {
+    files: ['playwright.config.js'], //providing globals for extra stuff
+    languageOptions: {
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
       },
     },
   },
