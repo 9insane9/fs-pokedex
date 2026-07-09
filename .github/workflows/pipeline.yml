@@ -21,3 +21,5 @@ jobs:
         run: npm run test
       - name: Build
         run: npm run build
+      - name: Trigger deployment
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
