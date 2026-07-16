@@ -4,11 +4,17 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     branches: [main]
     types: [opened, synchronize]
 
 jobs:
+  check_for_skip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +31,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Trigger deployment
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push'}}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
