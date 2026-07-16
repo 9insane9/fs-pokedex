@@ -31,4 +31,6 @@ const start = async () => {
 
 // sixth comment with skip tag
 
+// seventh, this time we skip it for real
+
 start()
