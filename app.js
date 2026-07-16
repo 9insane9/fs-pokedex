@@ -29,4 +29,6 @@ const start = async () => {
 
 //fifth
 
+// sixth comment with skip tag
+
 start()
