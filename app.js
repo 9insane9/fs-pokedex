@@ -33,4 +33,6 @@ const start = async () => {
 
 // seventh, this time we skip it for real
 
+// number 8, skip 2 the skippening
+
 start()
