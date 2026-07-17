@@ -27,6 +27,7 @@ jobs:
         run: npm run build
 
   deploy:
+    if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip')}}
     needs: [build_and_test]
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +36,6 @@ jobs:
         with:
           node-version: '24'
       - name: Trigger deployment
-        if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip')}}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
 
   tag_release:
@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Bump version and push tag
-        if: ${{ github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip')}}
+        if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip')}}
         uses: anothrNick/github-tag-action@4ed44965e0db8dab2b466a16da04aec3cc312fd8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,7 +61,7 @@ jobs:
           nodetail: true
           title: '**:white_check_mark: Deployment successful!** A new version deployed to production'
           description: |
-            ## Deployment Details
+            ### Deployment Details
             **Commit:** ${{ github.sha }}
             **Message:** ${{ github.event.head_commit.message }}
             **Author:** ${{ github.event.head_commit.author.name }}
