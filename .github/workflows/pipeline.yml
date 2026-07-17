@@ -57,7 +57,7 @@ jobs:
       - uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          color: green
+          color: 0x00ff00
           nodetail: true
           title: '**:white_check_mark: Deployment successful!** A new version deployed to production'
           description: |
@@ -75,7 +75,7 @@ jobs:
       - uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          color: red
+          color: 0xff0000
           nodetail: true
           title: '**:x: Build failed!** The pipeline encountered an error'
           description: |
