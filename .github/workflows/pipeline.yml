@@ -59,8 +59,9 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
-          title: '**# Deployment successful!** A new version deployed to production'
+          title: '**:white_check_mark: Deployment successful!** A new version deployed to production'
           description: |
+            ## Deployment Details
             **Commit:** ${{ github.sha }}
             **Message:** ${{ github.event.head_commit.message }}
             **Author:** ${{ github.event.head_commit.author.name }}
