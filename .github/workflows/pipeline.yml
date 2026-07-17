@@ -66,3 +66,28 @@ jobs:
             **Message:** ${{ github.event.head_commit.message }}
             **Author:** ${{ github.event.head_commit.author.name }}
           username: 'Mr Notification Robot Person Thing'
+
+  notify_failure:
+    needs: [build_and_test, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          color: red
+          nodetail: true
+          title: '**:x: Build failed!** The pipeline encountered an error'
+          description: |
+            ### Failure Details
+            **Repository:** ${{ github.repository }}
+            **Branch:** ${{ github.ref_name }}
+            **Commit:** ${{ github.sha }}
+            **Message:** ${{ github.event.head_commit.message }}
+            **Author:** ${{ github.event.head_commit.author.name }}
+            **Workflow:** ${{ github.workflow }}
+            **Job:** ${{ github.job }}
+
+            [View Commit](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+            [View Workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          username: 'Mr Notification Robot Person Thing'
