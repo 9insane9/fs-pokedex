@@ -58,6 +58,7 @@ jobs:
         if: success()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
           title: '**# Deployment successful!** A new version deployed to production'
           description: |
             **Commit:** ${{ github.sha }}
