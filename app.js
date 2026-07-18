@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5001
 
 app.use(express.static('dist'))
 
-appget('/version', (req, res) => {
+app.get('/version', (req, res) => {
   res.send('2') // change this string to ensure a new version deployed
 })
 
@@ -40,5 +40,7 @@ const start = async () => {
 // number 10, skip 4 life
 
 // number 11, comment after adding toJson to workflow
+
+// number 12
 
 start()
